@@ -1,5 +1,5 @@
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import { CssBaseline, IconButton } from "@mui/material";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { CssBaseline } from "@mui/material";
 import type { AppProps } from "next/app";
 import React, { useContext } from 'react';
 

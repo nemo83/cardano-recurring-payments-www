@@ -9,7 +9,7 @@ export interface WalletContext {
 
 const Context = createContext({});
 
-export function WalletProvider({ children }) {
+export function WalletProvider({ children }: React.PropsWithChildren<{}>) {
     const [walletHandle, setWalletHandle] = useState(null);
     return (
         <Context.Provider value={[walletHandle, setWalletHandle]}>{children}</Context.Provider>

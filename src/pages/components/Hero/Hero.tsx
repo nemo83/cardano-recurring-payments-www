@@ -5,16 +5,6 @@ import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-
-const items = [
-    {
-        icon: <SettingsSuggestRoundedIcon />,
-        title: 'Adaptable performance',
-        description:
-            'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
-    }
-];
 
 export default function Hero() {
     return (
