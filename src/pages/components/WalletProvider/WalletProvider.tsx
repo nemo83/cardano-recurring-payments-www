@@ -1,20 +1,28 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, FC, ReactNode } from "react";
+import { CIP30Interface } from "@blaze-cardano/sdk"
 
 export interface WalletContext {
     connected: boolean,
-    walletHandle: any|undefined,
+    walletHandle: CIP30Interface | undefined,
     baseAddress: string,
-    stakingAddress: string|undefined
-  }
+    stakingAddress: string | undefined
+}
 
 const Context = createContext({});
 
-export function WalletProvider({ children }: React.PropsWithChildren<{}>) {
+interface MyProps {
+    children?: ReactNode;
+}
+
+const WalletProvider: FC<MyProps> = (props) => {
     const [walletHandle, setWalletHandle] = useState(null);
     return (
-        <Context.Provider value={[walletHandle, setWalletHandle]}>{children}</Context.Provider>
+        <Context.Provider value={[walletHandle, setWalletHandle]}>{props.children}</Context.Provider>
     );
 }
+
+
+export default WalletProvider;
 
 export function useWalletContext() {
     return useContext(Context);
