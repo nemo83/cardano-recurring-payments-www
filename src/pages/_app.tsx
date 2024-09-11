@@ -2,9 +2,6 @@ import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import { CssBaseline, IconButton } from "@mui/material";
 import type { AppProps } from "next/app";
 import React, { useContext } from 'react';
-import Box from '@mui/material/Box';
-// import Brightness4Icon from '@mui/icons-material/Brightness4';
-// import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 

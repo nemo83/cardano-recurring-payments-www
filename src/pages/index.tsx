@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Header from "@/pages/components/Header";
-import SideBar from "@/pages/components/SideBar";
 import React from "react";
 import Hero from "@/pages/components/Hero/Hero";
 
@@ -17,9 +16,6 @@ const Home = () => {
       <main>
         <Header />
         <Hero/>
-        {/* <Highlights/> */}
-        {/* <PoolCards/> */}
-        {/* <SideBar /> */}
       </main>
     </>
   );

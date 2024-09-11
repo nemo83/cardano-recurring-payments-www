@@ -1,4 +1,3 @@
-import { AppProps } from "next/app";
 import { createContext, useContext, useState } from "react";
 
 export interface WalletContext {
