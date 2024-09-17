@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "@/pages/components/Header";
 import React from "react";
 import Hero from "@/pages/components/Hero/Hero";
+import PaymentSetup from "@/pages/components/PaymentSetup/PaymentSetup";
 
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <main>
         <Header />
         <Hero/>
+        <PaymentSetup onSubmit={() => {}} />
       </main>
     </>
   );
