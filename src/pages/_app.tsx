@@ -2,13 +2,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from "@mui/material";
 import type { AppProps } from "next/app";
 import React, { useContext } from 'react';
+import WalletProvider from './components/WalletProvider';
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 const App = ({ Component, pageProps }: AppProps) => {
 
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
-  
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -30,10 +31,12 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <WalletProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </WalletProvider>
     </ColorModeContext.Provider>
   );
 }

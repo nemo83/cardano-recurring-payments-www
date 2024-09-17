@@ -14,12 +14,24 @@ import { useTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useColorModeContext } from "@/pages/_app";
+import { useWalletContext } from "../WalletProvider/WalletProvider";
+import { Blockfrost, Blaze, WebWallet, CIP30Interface } from "@blaze-cardano/sdk"
+import { Button } from "@mui/material";
+
+declare global {
+    interface Window {
+        cardano: any;
+    }
+}
 
 // Header
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
 const Header = () => {
+
+    // Wallet Provider
+    const [walletProvider, setWalletProvider] = useWalletContext();
 
     // Header stuff
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -44,11 +56,38 @@ const Header = () => {
     const theme = useTheme();
     const colorMode = useColorModeContext();
 
+    async function connect(walletName: string) {
+
+        console.log(window.cardano);
+
+        const wallet: CIP30Interface = await window.cardano[walletName].enable();
+
+        const provider = new Blockfrost({
+            network: 'cardano-mainnet',
+            projectId: 'mainnetKWaNkQcrF1erC3u3SZjaFxZiM2M20jFM',
+        });
+
+        Blaze.from(provider, new WebWallet(wallet))
+
+        // setWalletHandle(handle)
+
+        // if (!isReconnect) {
+        //     localStorage.setItem(wallet_name_key, walletName)
+        //     toast.success('Wallet correctly connected!')
+        // }
+
+    }
+
+    async function disconnect() {
+        // localStorage.removeItem(wallet_name_key)
+        // setWalletHandle(null)
+    }
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -127,9 +166,7 @@ const Header = () => {
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                            </IconButton>
+                            <Button onClick={() => connect('eternl')} sx={{ my: 2, color: 'white', display: 'block' }}>Connect Wallet</Button>
                         </Tooltip>
                         <Menu
                             sx={{ mt: '45px' }}
