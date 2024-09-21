@@ -7,14 +7,13 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { useColorModeContext } from "@/pages/_app";
-import { useWalletContext } from "../WalletProvider/WalletProvider";
+import { useWalletContext, WalletContext } from "../WalletProvider/WalletProvider";
 import { Blockfrost, Blaze, WebWallet, CIP30Interface } from "@blaze-cardano/sdk"
 import { Button } from "@mui/material";
 
@@ -67,7 +66,13 @@ const Header = () => {
             projectId: 'mainnetKWaNkQcrF1erC3u3SZjaFxZiM2M20jFM',
         });
 
-        Blaze.from(provider, new WebWallet(wallet))
+        const blaze = await Blaze.from(provider, new WebWallet(wallet));
+
+        const unusedAddress = await blaze.wallet.getUnusedAddresses();
+        console.log('unused address: ' + unusedAddress[0].toBech32());
+
+
+        
 
         // setWalletHandle(handle)
 
